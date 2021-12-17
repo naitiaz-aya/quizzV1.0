@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quizz App | <%= title %> </title>
+
+</head>
+<body>
+  <div class="dashboard">
+    <h2>All Questions</h2>
+    <% if (questions.length > 0) { %>
+      <% questions.forEach(question => { %>
+
+      <p class="description"><%= question.description %> </p>
+      <h6 class="answers"><%= question.answers %></h6>
+      <h6 class="correctAnswer"><%= question.correctAnswer %></h6>
+
+      <% }) %>
+    <% } else { %>
+      <p>Ther are no questions to display </p>
+      <% } %>
+  </div>
+</body>
+</html>
