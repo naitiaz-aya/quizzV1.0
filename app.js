@@ -3,6 +3,9 @@
 const express = require("express")
 const app = express()
 
+//Cookies
+const cookieparser = require('cookie-parser')
+
 //routes
 const pagesRoute = require('./routes/pages')
 const authRoute = require('./routes/auth')
@@ -14,27 +17,27 @@ dotenv.config({path: './.env'})
 //Create connection
 const mysql = require('mysql')
 const db = mysql.createConnection({
-  host : process.env.DATABASE_HOST,
-  user : process.env.DATABASE_USER,
-  password : process.env.DATABASE_PASSWORD,
-  database : process.env.DATABASE
+	host: "localhost",
+	user: "root",
+	password: "",
+	database: "quizz",
 })
 
 //Connect 
 db.connect((err,  connection) => {
-  if (err) throw err
-  console.log('MySql Connected ...')
+	if (err) throw err
+	console.log('MySql Connected ...')
 })
 
 // Create DB
 app.get('/createdb', (req, res) => {
-  let sql = 'CREATE DATABASE quizz'
-  db.query(sql, (err, result) => {
-    if(err) throw err
-    console.log(result)
-    res.send('Database created ...')
-    console.log('Database created ...')
-  })
+	let sql = 'CREATE DATABASE quizz'
+	db.query(sql, (err, result) => {
+		if(err) throw err
+		console.log(result)
+		res.send('Database created ...')
+		console.log('Database created ...')
+	})
 })
 
 //Middleware de l'enregistreur de requêtes HTTP pour node.js
@@ -53,10 +56,11 @@ app.use(express.urlencoded({ extended: false}))
 
 // Parse JSON bodies (as sent by API clients)
 app.use(express.json())
+app.use(cookieparser())
 
 //listen for requests 
 app.listen(5555,() =>   {
-console.log("Server started on Port 5555 ...")
+	console.log("Server started on Port 5555 ...")
 })
 
 //Define routes

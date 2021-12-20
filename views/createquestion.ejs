@@ -1,24 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quizz App | <%= title %> </title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Quizz App | <%= title %> </title>
 </head>
 <body>
-  <!-- >==============================<Create Question>==============================< -->
-  <div class="createQuestion">
-    <form action="/questions" method="POST">
-      <label for="description">The Question</label>
-      <textarea  id="description" name="description" required></textarea>
-      <label for="answers">Answers</label>
-      <input type="text" name="answers" id="answers" required>
-      <label for="correctAnswer">Correct answer</label>
-      <input type="text" name="correctAnswer" id="correctAnswer" required>
-      <button>Submit</button>
-    </form>
-  </div>
+	<a href="/auth/logout" style="color: #59238F;">logout</a>
+
+	<!-- >==============================<Create Question>==============================< -->
+	<div class="createQuestion">
+		<form action="/questions" method="POST">
+			<label for="description">The Question</label>
+			<textarea  id="description" name="description" required></textarea>
+			<label for="answers">Answers</label>
+			<input type="text" name="answers" id="answers" required>
+			<label for="correctAnswer">Correct answer</label>
+			<input type="text" name="correctAnswer" id="correctAnswer" required>
+			<button>Submit</button>
+		</form>
+	</div>
 
 </body>
 </html>
