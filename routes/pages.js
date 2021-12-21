@@ -12,7 +12,6 @@ router.get("/register", (req, res) => {
 
 // >==============================<login page>==============================<
 router.get("/login", (req, res) => {
-	// console.log(req)
 	res.render("login", {title: "Login Page"})
 })
 
@@ -21,10 +20,9 @@ router.get('/question/create', (req, res) => {
 	res.render("createquestion", {title: "Create a new question"})
 })
 
-
 // >==============================<dashboard>==============================<
 router.get('/dashboard', (req, res) => {
-	res.render("dashboard", {title: "Dashboard",  })
+	res.render("dashboard", {title: "Dashboard"})
 })
 
 // >==============================<404 page>==============================<

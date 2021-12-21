@@ -9,6 +9,7 @@ const cookieparser = require('cookie-parser')
 //routes
 const pagesRoute = require('./routes/pages')
 const authRoute = require('./routes/auth')
+const questionRoute = require('./routes/questions')
 
 //.env 
 const dotenv = require('dotenv')
@@ -24,7 +25,7 @@ const db = mysql.createConnection({
 })
 
 //Connect 
-db.connect((err,  connection) => {
+db.connect((err, connection) => {
 	if (err) throw err
 	console.log('MySql Connected ...')
 })
@@ -59,15 +60,12 @@ app.use(express.json())
 app.use(cookieparser())
 
 //listen for requests 
-app.listen(5555,() =>   {
+app.listen(5555,() => {
 	console.log("Server started on Port 5555 ...")
 })
 
 //Define routes
 app.use('/', pagesRoute)
 app.use('/auth', authRoute)
+app.use('/question', questionRoute)
 
-// app.post("/auth/register", 
-// register = (req, res) => {
-//   console.log(req.body)
-// })
