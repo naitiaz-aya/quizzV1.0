@@ -18,7 +18,7 @@ router.get("/login", (req, res) => {
 })
 
 // >==============================<create questions>==============================<
-router.get('/question/create', authorize(Role.Teacher), (req, res) => {
+router.get('/question/create',(req, res) => {
 	res.render("createquestion", {title: "Create a new question"})
 })
 
@@ -28,7 +28,7 @@ router.get('/dashboard', (req, res) => {
 })
 
 // >==============================<Index>==============================<
-router.get('/index',  authorize(Role.Student), (req, res) => {
+router.get('/index',   (req, res) => {
 	res.render("index", {title: "Index"})
 })
 
