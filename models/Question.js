@@ -24,7 +24,6 @@ exports.update = (data, id) => {
 		correctAnswer = '${data.correctAnswer}',
 		score = '${data.score}',
 		WHERE id = ${id}`,
-		
 	)
 }
 
@@ -33,7 +32,6 @@ exports.destroy = (id) => {
 	db.query(
 		`DELETE FROM questions WHERE 
 		id = ${id}`,
-		
 	)
 }
 
@@ -41,7 +39,6 @@ exports.destroy = (id) => {
 exports.edit = (id) => {
 	db.query(
 		`SELECT * FROM questions WHERE 
-		id = ${id}`, 
-		
+		id = ${id}`,
 	)
 }

@@ -1,4 +1,6 @@
 const router = require("express").Router()
+const authorize = require('../helpers/authorize')
+const Role = require('../helpers/role')
 
 // >==============================<home page>==============================<
 router.get("/",(req, res) => {
@@ -16,13 +18,18 @@ router.get("/login", (req, res) => {
 })
 
 // >==============================<create questions>==============================<
-router.get('/question/create', (req, res) => {
+router.get('/question/create', authorize(Role.Teacher), (req, res) => {
 	res.render("createquestion", {title: "Create a new question"})
 })
 
 // >==============================<dashboard>==============================<
 router.get('/dashboard', (req, res) => {
 	res.render("dashboard", {title: "Dashboard"})
+})
+
+// >==============================<Index>==============================<
+router.get('/index',  authorize(Role.Student), (req, res) => {
+	res.render("index", {title: "Index"})
 })
 
 // >==============================<404 page>==============================<

@@ -1,6 +1,8 @@
 const mysql = require("mysql");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
+const authorize = require('../helpers/authorize')
+const Role = require('../helpers/role')
 
 const db = mysql.createConnection({
 	host: "localhost",
@@ -45,17 +47,21 @@ exports.register = (req, res) => {
 // >==============================<Login>==============================<
 exports.login = (req, res) => {
 	try{
-		const {username, password, role} = req.body
-
+		//const {username, password} = req.body
+		let username = req.body.username
+		let password = req.body.password
+		
 		if(!username || !password) {
 			return res.status(400).render('login', {message: 'You need an username and password.'})
 		}
 
-		db.query('SELECT * FROM users WHERE username = ?' , [username] , async (error, results) => {
-			console.log(results)
+		db.query('SELECT * FROM users WHERE username = ? '[username]  , async (error, results) => {
+			console.log(results + "ok")
 			if(!results || !(await bcrypt.compare(password, results[0].password))){
 				res.status(400).redirect('/login')
 			}else{
+		// const role = req.body.role
+
 				const id = results[0].id
 				const token = jwt.sign({ id }, process.env.JWT_SECRET, {
 					expiresIn: process.env.JWT_EXPIRE_IN
@@ -66,9 +72,14 @@ exports.login = (req, res) => {
 					),
 					httponly: true,
 				}
-				res.cookie('jwt', token, cookieOption)
-
-				res.status(200).redirect('/dashboard')
+				res.cookie('jwt', token, cookieOption);
+				// console.log(role + "aya")
+				// role == "teacher" : res.status(200).redirect('/create/question') ? res.status(200).redirect('/index')
+				// if(role == "teacher"){
+				// 	res.status(200).redirect('/create/question')
+				// }else if (role == "student"){
+					res.status(200).redirect('/index')
+				// }
 			}
 		})
 	}catch (err){

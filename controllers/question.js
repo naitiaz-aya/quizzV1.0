@@ -20,22 +20,22 @@ exports.index = (req, res) => {
 
 // >==============================<Store>==============================<
 exports.store = (req, res) => {
-  const description = req.body.description
-  const correctAnswer = req.body.correctAnswer
-  const score = req.body.score
-  // const type = req.body.type
+	const description = req.body.description
+	const correctAnswer = req.body.correctAnswer
+	const score = req.body.score
+	// const type = req.body.type
 	console.log(res)
-  db.query(
-    "INSERT INTO questions (description, correctAnswer, score) VALUES (?,?,?)",
-    [description, correctAnswer, score],
-    (err, result) => {
-      if (err) {
-        console.log(err)
-      } else {
-        res.redirect("/dashboard")
-      }
-    }
-  )
+	db.query(
+		"INSERT INTO questions (description, correctAnswer, score) VALUES (?,?,?)",
+		[description, correctAnswer, score],
+		(err, result) => {
+			if (err) {
+				console.log(err)
+			} else {
+				res.redirect("/dashboard")
+			}
+		}
+	)
 }
 
 
