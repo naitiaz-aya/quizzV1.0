@@ -1,8 +1,8 @@
 const mysql = require("mysql");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
-const authorize = require('../helpers/authorize')
-const Role = require('../helpers/role')
+// const authorize = require('../helpers/authorize')
+// const Role = require('../helpers/role')
 
 const db = mysql.createConnection({
 	host: "localhost",
@@ -40,8 +40,6 @@ exports.register = (req, res) => {
 			)
 		}
 	)
-
-	// res.send("User registred ...");
 }
 
 // >==============================<Login>==============================<
@@ -57,13 +55,11 @@ exports.login = (req, res) => {
 
 		db.query('SELECT * FROM users WHERE username = ? ', [username]  , async (error, results) => {
 			let role = results[0].role
-			
 			if(!results || !(await bcrypt.compare(password, results[0].password))){
-				
-
 				res.status(400).redirect('/login')
 			}else{
-				console.log(results[0].role)
+				user = results[0]
+				console.log(user)
 				const id = results[0].id
 				const token = jwt.sign({ id }, process.env.JWT_SECRET, {
 					expiresIn: process.env.JWT_EXPIRE_IN
@@ -74,13 +70,12 @@ exports.login = (req, res) => {
 					),
 					httponly: true,
 				}
-				res.cookie('jwt', token, cookieOption);
-				// role == "teacher" : res.status(200).redirect('/create/question') ? res.status(200).redirect('/index')
+				res.cookie('jwt', token, cookieOption)
 				if(role === "teacher"){
-						res.status(200).redirect('/question/create')
-					}else if (role === "student"){
+						res.status(200).render('teacher', {title: "Index", users: user})
+						// res.status(200).render({user: user})
+				}else if (role === "student"){
 						res.status(200).redirect('/index')
-						
 				}
 			}
 		})

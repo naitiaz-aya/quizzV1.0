@@ -18,13 +18,10 @@ exports.get = () => {
 
 // >==============================<Update question function>==============================<
 exports.update = (data, id) => {
-	db.query(
-		`UPDATE questions SET ?
-		description = '${data.description}', 
-		correctAnswer = '${data.correctAnswer}',
-		score = '${data.score}',
-		WHERE id = ${id}`,
-	)
+	console.log(data)
+	// db.query(
+	// 	"UPDATE questions SET ? description = "+data.description+ " correctAnswer = "+data.correctAnswer+" score = "+data.score+" WHERE id = "+id+'"',
+	// )
 }
 
 // >==============================<Delete question function>==============================<

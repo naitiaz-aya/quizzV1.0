@@ -17,18 +17,18 @@
 			<!-- <main class="flex-col bg-indigo-50 w-full ml-4 pr-6"> -->
 				<div class="flex flex-wrap mb-9 space-x-4 justify-center">
 				<div class="flex p-5 mb-8 bg-indigo-500  space-x-4 items-center shadow-xl max-w-sm rounded-md">
-					<img src="https://i.imgur.com/iH7hkQb.png" alt="image" class="h-14 w-14 rounded-full" />
-					<div>
-						<h2 class="text-white font-semibold text-xl"><%= user.username  %></h2>
-						<p class="mt-1 text-gray-400 text-sm cursor-pointer"><%= user.role  %></p>
-					</div>
-				</div>
-				</div>
-				<div class="p-4 bg-white mb-8 rounded-xl shadow-lg place-content-end">
-					<a href="#">quizz1</a>
+          <img src="https://i.imgur.com/iH7hkQb.png" alt="image" class="h-14 w-14 rounded-full" />
+          <div>
+            <h2 class="text-white font-semibold text-xl"><%= user.username  %></h2>
+            <p class="mt-1 text-gray-400 text-sm cursor-pointer"><%= user.role  %></p>
+          </div>
+        </div>
 				</div>
 				<div class="p-4 bg-white mb-8 rounded-xl shadow-lg place-content-end">
-					<a href="#">quizz2</a>
+					<a href="/question/create">Add Question</a>
+				</div>
+				<div class="p-4 bg-white mb-8 rounded-xl shadow-lg place-content-end">
+					<a href="/question/index">Dashboard</a>
 				</div>
 				<div class="p-4 bg-white mb-8 rounded-xl shadow-lg place-content-end">
 					<a href="/auth/logout">logout</a>

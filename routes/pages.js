@@ -17,7 +17,7 @@ router.get("/login", (req, res) => {
 	res.render("login", {title: "Login Page"})
 })
 
-// >==============================<create questions>==============================<
+// >==============================<create question>==============================<
 router.get('/question/create',(req, res) => {
 	res.render("createquestion", {title: "Create a new question"})
 })
@@ -28,8 +28,13 @@ router.get('/dashboard', (req, res) => {
 })
 
 // >==============================<Index>==============================<
-router.get('/index',   (req, res) => {
+router.get('/index', (req, res) => {
 	res.render("index", {title: "Index"})
+})
+
+// >==============================<Index>==============================<
+router.get('/teacher', (req, res) => {
+	res.render("teacher", {title: "Index"})
 })
 
 // >==============================<404 page>==============================<
@@ -37,6 +42,6 @@ router.get((req, res) => {
 	res.status(404).render('error', {title: "404"})
 })
 
-//module.exports est un objet spécial qui est inclus par défaut dans 
-//chaque fichier JavaScript de l'application Node.js.
+//module.exports est un objet spécial qui est inclus par défaut dans
+//chaque fichier JavaScript de l'application Node.js
 module.exports = router 
